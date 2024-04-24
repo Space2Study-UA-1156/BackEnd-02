@@ -1,4 +1,4 @@
-# Space2Study-node-BackEnd-mvp
+# Space2Study-BackEnd
 
 <a href="https://softserve.academy/"><img src="https://github.com/ita-social-projects/SpaceToStudy-Client/blob/main/photo2.jpg" title="SoftServe IT Academy" alt="SoftServe IT Academy"></a>
 
@@ -6,9 +6,9 @@
 
 SpaceToStudy project is a platform where experts in various fields share their knowledge and students can learn from the best. Here you can find the proper training course, find a tutor, or find students and receive feedback from them.
 
-[![GitHub issues](insert your link here)]
-[![Pending Pull-Requests](insert your link here)]
-[![GitHub license](insert your link here)]
+[![GitHub issues](https://img.shields.io/github/issues/Space2Study-UA-1156/BackEnd-02)](https://github.com/Space2Study-UA-1156/BackEnd-02/issues)
+[![Pending Pull-Requests](https://img.shields.io/github/issues-pr/Space2Study-UA-1156/BackEnd-02)](https://github.com/Space2Study-UA-1156/BackEnd-02/pulls)
+[![GitHub license](https://img.shields.io/github/license/Space2Study-UA-1156/BackEnd-02)](../main/LICENSE)
 
 ---
 
@@ -251,40 +251,31 @@ Only the release should merge into the main branch!!!
 ## Teams
 
 ### Development team
-
-[![@Tolik170](https://avatars.githubusercontent.com/u/63456632?v=4)](https://github.com/Tolik170)
-[![@Mav-Ivan](https://avatars.githubusercontent.com/u/110425368?v=4)](https://github.com/Mav-Ivan)
-[![@dmtrth25](https://avatars.githubusercontent.com/u/56305508?v=4)](https://github.com/dmtrth25)
-[![@abalanovsky](https://avatars.githubusercontent.com/u/108689551?v=4)](https://github.com/abalanovsky)
-[![@OlyaKorchan](https://avatars.githubusercontent.com/u/17857767?v=4)](https://github.com/OlyaKorchan)
-[![@Marichka0406](https://avatars.githubusercontent.com/u/121502737?v=4)](https://github.com/Marichka0406)
-
-### DevOps team
-
-[![@abohatyrov](https://avatars.githubusercontent.com/u/52012169?v=4)](https://github.com/abohatyrov)
-[![@bdeputat](https://avatars.githubusercontent.com/u/36072762?v=4)](https://github.com/bdeputat)
-
-### Designer team
-
-[![@Nastia197](https://avatars.githubusercontent.com/u/76164279?v=4)](https://github.com/Nastia197)
-
-### BA team
-
-[![@IvannaSW](https://avatars.githubusercontent.com/u/24367409?v=4)](https://github.com/IvannaSW)
-
-### QC team
-
-[![@AntonOkun](https://avatars.githubusercontent.com/u/129941062?v=4)](https://github.com/AntonOkun)
-[![@Valent1n0o](https://avatars.githubusercontent.com/u/118978192?v=4)](https://github.com/Valent1n0o)
-
----
+[![@ohanovdmytro](https://avatars.githubusercontent.com/ohanovdmytro?s=130)](https://github.com/ohanovdmytro)
+[![@Olenka-Hryk](https://avatars.githubusercontent.com/Olenka-Hryk?s=130)](https://github.com/Olenka-Hryk)
+[![@Nazar-Lysak](https://avatars.githubusercontent.com/Nazar-Lysak?s=130)](https://github.com/Nazar-Lysak)
+[![@docia](https://avatars.githubusercontent.com/docia?s=130)](https://github.com/docia)
+[![@BodiaPutiak](https://avatars.githubusercontent.com/BodiaPutiak?s=130)](https://github.com/BodiaPutiak)
+[![@m6xcom](https://avatars.githubusercontent.com/m6xcom?s=130)](https://github.com/m6xcom)
 
 ## FAQ
 
 - **How do I do _specifically_ so and so?**
   - No problem! Just do this.
 
----
+## 🔨 Tools
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" align="left" width="40" height="60"/>  
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" align="left" width="40" height="60"/>   
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="MaterialUI" align="left" width="40" height="60"/> 
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" align="left" width="40" height="60"/>   
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" align="left" width="40" height="60"/>  
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" alt="Redux" align="left" width="40" height="60"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="NodeJS" align="left" width="40" height="60"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" align="left" width="40" height="60"/>   
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" alt="Eslint" align="left" width="40" height="60"/> 
+<br />
+<br />
 
 ## Support
 
