@@ -60,10 +60,15 @@ const reviewService = {
     })
   },
 
-  updateReview: async (id, currentUserId, updateData) => {
+  updateReview: async (id, currentUserId, updateData, res) => {
     const filteredUpdateData = filterAllowedFields(updateData, allowedReviewFieldsForUpdate)
 
     const review = await Review.findById(id).exec()
+    const reviewAuthor = review.author.toString()
+
+    if (currentUserId !== reviewAuthor) {
+      return res.sendStatus(403)
+    }
 
     for (const field in filteredUpdateData) {
       review[field] = filteredUpdateData[field]
@@ -71,7 +76,13 @@ const reviewService = {
     await review.save()
   },
 
-  deleteReview: async (id) => {
+  deleteReview: async (id, currentUserId, res) => {
+    const review = await Review.findById(id).exec()
+    const reviewAuthor = review.author.toString()
+
+    if (currentUserId !== reviewAuthor) {
+      return res.sendStatus(403)
+    }
     await Review.findByIdAndRemove(id).exec()
   }
 }

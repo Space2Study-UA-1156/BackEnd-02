@@ -5,6 +5,7 @@ const createAggregateOptions = require('~/utils/users/createAggregateOptions')
 const getUsers = async (req, res) => {
   const { skip, limit, sort, match } = createAggregateOptions(req.query)
 
+
   const users = await userService.getUsers({ skip, limit, sort, match })
 
   res.status(200).json(users)
