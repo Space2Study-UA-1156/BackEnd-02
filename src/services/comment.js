@@ -11,7 +11,12 @@ const commentService = {
       throw createForbiddenError()
     }
 
-    return await Comment.create({ author, cooperation: cooperationId, text, authorRole })
+    const newComment = await Comment.create({ author, cooperation: cooperationId, text, authorRole })
+
+    return await Comment.findById({ _id: newComment._id })
+      .populate('author', 'firstName lastName')
+      .select('-authorRole')
+      .exec()
   },
 
   getComments: async (cooperationId, userId) => {
@@ -20,7 +25,10 @@ const commentService = {
       throw createForbiddenError()
     }
 
-    return await Comment.find({ cooperation: cooperationId, author: userId }).exec()
+    return await Comment.find({ cooperation: cooperationId, author: userId })
+      .populate('author', 'firstName lastName')
+      .select('-authorRole')
+      .exec()
   }
 }
 
