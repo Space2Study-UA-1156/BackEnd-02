@@ -5,15 +5,18 @@ const categorySchema = new Schema(
   {
     name: {
       type: String,
+      required: true,
       unique: true
     },
     appearance: {
       icon: {
         type: String,
+        required: true,
         default: 'mocked-path-to-icon'
       },
       color: {
         type: String,
+        required: true,
         default: '#66C42C'
       }
     },
