@@ -11,7 +11,7 @@ const categorySchema = new Schema(
     appearance: {
       icon: {
         type: String,
-        required: true,
+        required: [true, errors.FIELD_IS_NOT_DEFINED('appearance.icon').message],
         default: 'mocked-path-to-icon'
       },
       color: {
