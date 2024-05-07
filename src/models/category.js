@@ -16,7 +16,7 @@ const categorySchema = new Schema(
       },
       color: {
         type: String,
-        required: true,
+        required: [true, errors.FIELD_IS_NOT_DEFINED('appearance.color').message],
         default: '#66C42C'
       }
     },
