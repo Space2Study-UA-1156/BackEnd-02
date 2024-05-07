@@ -5,7 +5,7 @@ const categorySchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: [true, errors.FIELD_IS_NOT_DEFINED('name').message],
       unique: true
     },
     appearance: {
