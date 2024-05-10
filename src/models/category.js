@@ -8,13 +8,11 @@ const categorySchema = new Schema(
       unique: true
     },
     appearance: {
-      icon: {
+      icon_path: {
         type: String,
-        default: 'mocked-path-to-icon'
       },
       color: {
         type: String,
-        default: '#66C42C'
       }
     },
     totalOffers: {
