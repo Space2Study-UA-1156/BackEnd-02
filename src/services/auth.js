@@ -27,7 +27,6 @@ const authService = {
 
     const confirmToken = tokenService.generateConfirmToken({ id: user._id, role })
     await tokenService.saveToken(user._id, confirmToken, CONFIRM_TOKEN)
-    await emailService.sendEmail(email, emailSubject.EMAIL_CONFIRMATION, language, { confirmToken, email, firstName })
     return {
       userId: user._id,
       userEmail: user.email
@@ -75,11 +74,7 @@ const authService = {
       throw createError(401, INCORRECT_CREDENTIALS)
     }
 
-    const { _id, lastLoginAs, isFirstLogin, isEmailConfirmed } = user
-
-    if (!isEmailConfirmed) {
-      throw createError(401, EMAIL_NOT_CONFIRMED)
-    }
+    const { _id, lastLoginAs, isFirstLogin } = user
 
     const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin })
     await tokenService.saveToken(_id, tokens.refreshToken, REFRESH_TOKEN)
