@@ -6,7 +6,6 @@ const { hashPassword, comparePasswords } = require('~/utils/passwordHelper')
 const { createError } = require('~/utils/errorsHelper')
 const {
   EMAIL_ALREADY_CONFIRMED,
-  EMAIL_NOT_CONFIRMED,
   BAD_CONFIRM_TOKEN,
   INCORRECT_CREDENTIALS,
   BAD_RESET_TOKEN,
@@ -27,7 +26,6 @@ const authService = {
 
     const confirmToken = tokenService.generateConfirmToken({ id: user._id, role })
     await tokenService.saveToken(user._id, confirmToken, CONFIRM_TOKEN)
-    await emailService.sendEmail(email, emailSubject.EMAIL_CONFIRMATION, language, { confirmToken, email, firstName })
     return {
       userId: user._id,
       userEmail: user.email
@@ -76,10 +74,6 @@ const authService = {
     }
 
     const { _id, lastLoginAs, isFirstLogin, isEmailConfirmed, firstName, lastName } = user
-
-    if (!isEmailConfirmed) {
-      throw createError(401, EMAIL_NOT_CONFIRMED)
-    }
 
     const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin, firstName, lastName, email })
     await tokenService.saveToken(_id, tokens.refreshToken, REFRESH_TOKEN)
