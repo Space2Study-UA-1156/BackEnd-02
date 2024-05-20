@@ -102,6 +102,11 @@ const userSchema = new Schema(
       default: true,
       select: false
     },
+    isRegistrationCompleted: {
+      type: Boolean,
+      default: false,
+      select: false
+    },
     lastLogin: {
       type: Date,
       default: null

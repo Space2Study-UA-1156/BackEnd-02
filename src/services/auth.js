@@ -73,9 +73,9 @@ const authService = {
       throw createError(401, INCORRECT_CREDENTIALS)
     }
 
-    const { _id, lastLoginAs, isFirstLogin, isEmailConfirmed, firstName, lastName } = user
+    const { _id, lastLoginAs, isFirstLogin, isRegistrationCompleted, isEmailConfirmed, firstName, lastName } = user
 
-    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin, firstName, lastName, email })
+    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin, isRegistrationCompleted, firstName, lastName, email })
     await tokenService.saveToken(_id, tokens.refreshToken, REFRESH_TOKEN)
 
     if (isFirstLogin) {
@@ -118,9 +118,9 @@ const authService = {
 
     const user = await getUserById(tokenData.id)
 
-    const { _id, lastLoginAs, isFirstLogin, firstName, lastName, email } = user
+    const { _id, lastLoginAs, isFirstLogin, isRegistrationCompleted, firstName, lastName, email } = user
 
-    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin, firstName, lastName, email })
+    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin, isRegistrationCompleted, firstName, lastName, email })
     await tokenService.saveToken(_id, tokens.refreshToken, REFRESH_TOKEN)
 
     return tokens

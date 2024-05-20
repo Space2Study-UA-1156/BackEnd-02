@@ -246,6 +246,7 @@ paths:
                   status: { student: active, tutor: active, admin: active }
                   isEmailConfirmed: true
                   isFirstLogin: true
+                  isRegistrationCompleted: false
                   lastLogin: 2022-09-02T11:59:53.243+00:00
                   bookmarkedOffers: []
                   FAQ:
@@ -288,6 +289,7 @@ paths:
                   status: { student: active, tutor: active, admin: active }
                   isEmailConfirmed: true
                   isFirstLogin: true
+                  isRegistrationCompleted: false
                   lastLogin: 2022-09-02T11:59:53.243+00:00
                   bookmarkedOffers: []
                   FAQ:
@@ -607,7 +609,7 @@ paths:
   /users/{id}/cooperations:
     get:
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       tags:
         - Users
       summary: Find cooperations for a user with the specified ID
