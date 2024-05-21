@@ -99,6 +99,18 @@ const errors = {
     code: 'INVALID_LANGUAGE',
     message: `The language name is invalid. Possible options: ${APP_LANG_ENUM.join(', ')}.`
   },
+  FILE_ALREADY_EXISTS: {
+    code: 'FILE_ALREADY_EXISTS',
+    message: 'File already exists.'
+  },
+  INVALID_FILE_TYPE: {
+    code: 'INVALID_FILE_TYPE',
+    message: 'Invalid file type. Only .png, .jpg, and .jpeg are allowed.'
+  },
+  INVALID_BASE64_FORMAT: {
+    code: 'INVALID_BASE64_FORMAT',
+    message: 'Invalid base64 string format.'
+  },
   DOCUMENT_NOT_FOUND: (document) => ({
     code: 'DOCUMENT_NOT_FOUND',
     message: `${document} with the specified ${document.length > 1 ? 'IDs were' : 'ID was'} not found.`
