@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 const {
-  enums: { APP_LANG_ENUM, SPOKEN_LANG_ENUM, STATUS_ENUM, ROLE_ENUM, LOGIN_ROLE_ENUM }
+  enums: { APP_LANG_ENUM, NATIVE_LANG_ENUM, SPOKEN_LANG_ENUM, STATUS_ENUM, ROLE_ENUM, LOGIN_ROLE_ENUM }
 } = require('~/consts/validation')
 const { SUBJECT, OFFER, USER } = require('~/consts/models')
 const {
@@ -88,8 +88,8 @@ const userSchema = new Schema(
     nativeLanguage: {
       type: String,
       enum: {
-        values: SPOKEN_LANG_ENUM,
-        message: ENUM_CAN_BE_ONE_OF('native language', SPOKEN_LANG_ENUM)
+        values: NATIVE_LANG_ENUM,
+        message: ENUM_CAN_BE_ONE_OF('native language', NATIVE_LANG_ENUM)
       }
     },
     isEmailConfirmed: {
@@ -100,6 +100,11 @@ const userSchema = new Schema(
     isFirstLogin: {
       type: Boolean,
       default: true,
+      select: false
+    },
+    isRegistrationCompleted: {
+      type: Boolean,
+      default: false,
       select: false
     },
     lastLogin: {
