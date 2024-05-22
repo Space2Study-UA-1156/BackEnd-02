@@ -1,6 +1,6 @@
 const { serverCleanup, serverInit, stopServer } = require('~/test/setup')
 const { expectError } = require('~/test/helpers')
-const { DOCUMENT_NOT_FOUND } = require('~/consts/errors')
+const { DOCUMENT_NOT_FOUND, FORBIDDEN } = require('~/consts/errors')
 const testUserAuthentication = require('~/utils/testUserAuth')
 const Offer = require('~/models/offer')
 const Category = require('~/models/category')
@@ -21,7 +21,7 @@ let testOffer = {
   subject: '',
   category: {
     _id: '',
-    appearance: { icon: 'mocked-path-to-icon', color: '#66C42C' }
+    appearance: { icon_path: 'mocked-path-to-icon', color: '#66C42C' }
   }
 }
 
@@ -30,7 +30,7 @@ const updateData = {
 }
 
 describe('Offer controller', () => {
-  let app, server, accessToken, testOfferResponse
+  let app, server, accessToken, testOfferResponse, otherUserAccessToken
 
   beforeAll(async () => {
     ;({ app, server } = await serverInit())
@@ -40,6 +40,7 @@ describe('Offer controller', () => {
     await checkCategoryExistence()
 
     accessToken = await testUserAuthentication(app)
+    otherUserAccessToken = await testUserAuthentication(app)
 
     const categoryResponse = await Category.find()
 
@@ -147,6 +148,14 @@ describe('Offer controller', () => {
 
       expect(response.statusCode).toBe(204)
     })
+    it('should return forbidden error when user is not the author', async () => {
+      const response = await app
+        .patch(endpointUrl + testOffer._id)
+        .set('Authorization', `Bearer ${otherUserAccessToken}`)
+        .send(updateData)
+
+      expectError(403, FORBIDDEN, response)
+    })
   })
 
   describe(`test DELETE ${endpointUrl}:id`, () => {
@@ -160,6 +169,13 @@ describe('Offer controller', () => {
       const response = await app.get(endpointUrl + nonExistingOfferId).set('Authorization', `Bearer ${accessToken}`)
 
       expectError(404, DOCUMENT_NOT_FOUND([Offer.modelName]), response)
+    })
+    it('should return forbidden error when user is not the author', async () => {
+      const response = await app
+        .delete(endpointUrl + testOffer._id)
+        .set('Authorization', `Bearer ${otherUserAccessToken}`)
+
+      expectError(403, FORBIDDEN, response)
     })
   })
 })
