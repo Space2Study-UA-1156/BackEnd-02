@@ -168,7 +168,7 @@ paths:
             schema:
               $ref: '#/definitions/offerBody'
             example:
-              price: 300,
+              price: 300
               proficiencyLevel: [Advanced]
               title: this is a new title for test purposes
               description: Lorem ipsum dolor sit amet consectetur
@@ -252,7 +252,7 @@ paths:
                 $ref: '#/definitions/offer'
               example:
                 _id: 63ec1cd51e9d781cdb6f4b14
-                price: 300,
+                price: 300
                 proficiencyLevel: [Advanced]
                 title: this is a new title for test purposes
                 description: Lorem ipsum dolor sit amet consectetur
@@ -357,7 +357,7 @@ paths:
             schema:
               $ref: '#/definitions/offer'
             example:
-              price: 300,
+              price: 300
               proficiencyLevel: [Advanced]
               title: this is a new title for test purposes
               description: this is a test text 123
