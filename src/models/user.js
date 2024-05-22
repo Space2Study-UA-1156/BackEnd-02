@@ -92,6 +92,13 @@ const userSchema = new Schema(
         message: ENUM_CAN_BE_ONE_OF('native language', NATIVE_LANG_ENUM)
       }
     },
+    spokenLanguages: {
+      type: [String],
+      enum: {
+        values: SPOKEN_LANG_ENUM,
+        message: ENUM_CAN_BE_ONE_OF('spoken language', SPOKEN_LANG_ENUM)
+      }
+    },
     isEmailConfirmed: {
       type: Boolean,
       default: false,

@@ -32,14 +32,14 @@ const userService = {
         { path: 'mainSubjects.tutor', select: ['-createdAt', '-updatedAt'] },
         { path: 'mainSubjects.student', select: ['-createdAt', '-updatedAt'] }
       ])
-      .select('+lastLoginAs +isEmailConfirmed +isFirstLogin +bookmarkedOffers')
+      .select('+lastLoginAs +isEmailConfirmed +isFirstLogin +isRegistrationCompleted +bookmarkedOffers')
       .lean()
       .exec()
   },
 
   getUserByEmail: async (email) => {
     const user = await User.findOne({ email })
-      .select('+password +lastLoginAs +isEmailConfirmed +isFirstLogin +appLanguage')
+      .select('+password +lastLoginAs +isEmailConfirmed +isFirstLogin +isRegistrationCompleted +appLanguage')
       .lean()
       .exec()
 
@@ -94,6 +94,7 @@ const userService = {
     }
 
     filteredUpdateData.mainSubjects = { ...user.mainSubjects, [role]: updateData.mainSubjects }
+    filteredUpdateData.isRegistrationCompleted = true
 
     await User.findByIdAndUpdate(id, filteredUpdateData, { new: true, runValidators: true }).lean().exec()
   },

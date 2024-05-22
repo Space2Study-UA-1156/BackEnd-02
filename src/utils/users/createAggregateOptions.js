@@ -13,6 +13,7 @@ const createAggregateOptions = (query) => {
     email,
     isEmailConfirmed,
     isFirstLogin,
+    isRegistrationCompleted,
     lastLogin = '{}',
     limit = 5,
     name = '',
@@ -38,6 +39,7 @@ const createAggregateOptions = (query) => {
     ...nameQuery,
     email: getRegex(email),
     isFirstLogin: { $in: generateOptions(isFirstLogin) },
+    isRegistrationCompleted: { $in: generateOptions(isRegistrationCompleted) },
     isEmailConfirmed: { $in: generateOptions(isEmailConfirmed) }
   }
 

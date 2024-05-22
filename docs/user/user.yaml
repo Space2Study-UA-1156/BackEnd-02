@@ -62,6 +62,7 @@ paths:
                   totalReviews: { student: 10, tutor: 8 }
                   averageRating: { student: 4.5, tutor: 4.9 }
                   nativeLanguage: english
+                  spokenLanguages: [English, Ukrainian]
                   address: { country: The USA, city: California }
                   professionalSummary: KNPU H.S. Skovoroda
                   photo: john-doe-photo.jpg
@@ -94,6 +95,7 @@ paths:
                   totalReviews: { student: 0, tutor: 530 }
                   averageRating: { student: 0, tutor: 5 }
                   nativeLanguage: ukrainian
+                  spokenLanguages: [English, Ukrainian]
                   address: { country: Ukraine, city: Kharkiv }
                   professionalSummary: KNPU H.S. Skovoroda
                   photo: joe-doe-photo.jpg
@@ -240,12 +242,14 @@ paths:
                   totalReviews: { student: 10, tutor: 0 }
                   averageRating: { student: 4.5, tutor: 0 }
                   nativeLanguage: english
+                  spokenLanguages: [English, Ukrainian]
                   address: { country: The USA, city: California }
                   ProfessionalSummary: KNPU H.S. Skovoroda
                   photo: john-doe-photo.jpg
                   status: { student: active, tutor: active, admin: active }
                   isEmailConfirmed: true
                   isFirstLogin: true
+                  isRegistrationCompleted: false
                   lastLogin: 2022-09-02T11:59:53.243+00:00
                   bookmarkedOffers: []
                   FAQ:
@@ -282,12 +286,14 @@ paths:
                   totalReviews: { student: 10, tutor: 0 }
                   averageRating: { student: 4.5, tutor: 0 }
                   nativeLanguage: english
+                  spokenLanguages: [English, Ukrainian]
                   address: { country: The USA, city: California }
                   professionalSummary: KNPU H.S. Skovoroda
                   photo: john-doe-photo.jpg
                   status: { student: active, tutor: active, admin: active }
                   isEmailConfirmed: true
                   isFirstLogin: true
+                  isRegistrationCompleted: false
                   lastLogin: 2022-09-02T11:59:53.243+00:00
                   bookmarkedOffers: []
                   FAQ:
@@ -607,7 +613,7 @@ paths:
   /users/{id}/cooperations:
     get:
       security:
-        - bearerAuth: [ ]
+        - bearerAuth: []
       tags:
         - Users
       summary: Find cooperations for a user with the specified ID

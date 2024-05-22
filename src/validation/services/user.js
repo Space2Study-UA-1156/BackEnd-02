@@ -9,6 +9,7 @@ const allowedUserFieldsForUpdate = {
   professionalSummary: true,
   mainSubjects: true,
   nativeLanguage: true,
+  spokenLanguages: true,
   appLanguage: true,
   FAQ: true
 }

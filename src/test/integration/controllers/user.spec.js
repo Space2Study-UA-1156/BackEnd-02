@@ -34,6 +34,7 @@ let adminUser = {
   appLanguage: 'en',
   isEmailConfirmed: true,
   isFirstLogin: false,
+  isRegistrationCompleted: true,
   lastLoginAs: 'admin'
 }
 
