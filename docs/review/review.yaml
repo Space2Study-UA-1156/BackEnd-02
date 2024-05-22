@@ -154,6 +154,7 @@ paths:
                   totalReviews: 10
                   averageRating: 4.5
                   nativeLanguage: english
+                  spokenLanguages: English, Ukrainian
                   address: { country: The USA, city: California }
                   education: KNPU H.S. Skovoroda
                   photo: john-doe-photo.jpg
@@ -252,6 +253,7 @@ paths:
                   totalReviews: 10
                   averageRating: 4.5
                   nativeLanguage: english
+                  spokenLanguages: English, Ukrainian
                   address: { country: The USA, city: California }
                   education: KNPU H.S. Skovoroda
                   photo: john-doe-photo.jpg
