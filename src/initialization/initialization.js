@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 const cookieParser = require('cookie-parser')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUI = require('swagger-ui-express')
@@ -27,6 +28,8 @@ const initialization = (app) => {
 
   const swaggerSettings = swaggerJsDoc(swaggerOptions)
   app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSettings))
+
+  app.use('/avatars', express.static(path.join(process.cwd(), 'avatars')))
 
   app.use('/', router)
 
