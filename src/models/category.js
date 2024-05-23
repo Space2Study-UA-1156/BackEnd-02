@@ -1,22 +1,23 @@
 const { Schema, model } = require('mongoose')
 const { OFFER, CATEGORY } = require('~/consts/models')
+const { FIELD_IS_NOT_DEFINED } = require('~/consts/errors')
 
 const categorySchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, errors.FIELD_IS_NOT_DEFINED('name').message],
+      required: [true, FIELD_IS_NOT_DEFINED('name')],
       unique: true
     },
     appearance: {
       icon: {
         type: String,
-        required: [true, errors.FIELD_IS_NOT_DEFINED('appearance.icon').message],
+        required: [true, FIELD_IS_NOT_DEFINED('appearance.icon')],
         default: 'mocked-path-to-icon'
       },
       color: {
         type: String,
-        required: [true, errors.FIELD_IS_NOT_DEFINED('appearance.color').message],
+        required: [true, FIELD_IS_NOT_DEFINED('appearance.color')],
         default: '#66C42C'
       }
     },
