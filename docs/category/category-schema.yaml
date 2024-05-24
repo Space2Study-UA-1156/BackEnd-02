@@ -1,35 +1,40 @@
 definitions:
   categories:
-    type: array
-    items:
-      type: object
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        appearance:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
           type: object
           properties:
-            icon:
+            _id:
               type: string
-            color:
+            name:
               type: string
-        totalOffers:
-          type: object
-          properties:
-            student:
-              type: number
-              default: 0
-            tutor:
-              type: number
-              default: 0
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+            appearance:
+              type: object
+              properties:
+                icon_path:
+                  type: string
+                color:
+                  type: string
+            totalOffers:
+              type: object
+              properties:
+                student:
+                  type: number
+                  default: 0
+                tutor:
+                  type: number
+                  default: 0
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+      count:
+        type: integer
   categoryBody:
     type: object
     properties:
@@ -38,7 +43,7 @@ definitions:
       appearance:
         type: object
         properties:
-          icon:
+          icon_path:
             type: string
           color:
             type: string
@@ -52,7 +57,7 @@ definitions:
       appearance:
         type: object
         properties:
-          icon:
+          icon_path:
             type: string
           color:
             type: string

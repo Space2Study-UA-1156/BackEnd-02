@@ -1,5 +1,5 @@
 const User = require('~/models/user')
-const uploadService = require('~/services/upload')
+const avatarService = require('~/services/avatar')
 const { USER } = require('~/consts/upload')
 const { hashPassword } = require('~/utils/passwordHelper')
 const { createError } = require('~/utils/errorsHelper')
@@ -32,14 +32,14 @@ const userService = {
         { path: 'mainSubjects.tutor', select: ['-createdAt', '-updatedAt'] },
         { path: 'mainSubjects.student', select: ['-createdAt', '-updatedAt'] }
       ])
-      .select('+lastLoginAs +isEmailConfirmed +isFirstLogin +bookmarkedOffers')
+      .select('+lastLoginAs +isEmailConfirmed +isFirstLogin +isRegistrationCompleted +bookmarkedOffers')
       .lean()
       .exec()
   },
 
   getUserByEmail: async (email) => {
     const user = await User.findOne({ email })
-      .select('+password +lastLoginAs +isEmailConfirmed +isFirstLogin +appLanguage')
+      .select('+password +lastLoginAs +isEmailConfirmed +isFirstLogin +isRegistrationCompleted +appLanguage')
       .lean()
       .exec()
 
@@ -84,16 +84,17 @@ const userService = {
 
     const user = await User.findById(id).lean().exec()
 
-    if (user.photo) {
-      await uploadService.deleteFile(user.photo, USER)
+    if (user.photo && updateData.photo) {
+      await avatarService.deleteAvatar(user.photo, id)
     }
 
     if (updateData.photo) {
-      const photoUrl = await uploadService.uploadFile(updateData.photo, USER)
-      filteredUpdateData.photo = photoUrl
+      const avatarUrl = await avatarService.saveAvatar(updateData.photo, id)
+      filteredUpdateData.photo = avatarUrl
     }
 
     filteredUpdateData.mainSubjects = { ...user.mainSubjects, [role]: updateData.mainSubjects }
+    filteredUpdateData.isRegistrationCompleted = true
 
     await User.findByIdAndUpdate(id, filteredUpdateData, { new: true, runValidators: true }).lean().exec()
   },

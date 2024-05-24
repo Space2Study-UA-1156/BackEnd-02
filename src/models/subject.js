@@ -1,14 +1,18 @@
 const { Schema, model } = require('mongoose')
+const errors = require('~/consts/errors')
 const { CATEGORY, SUBJECT } = require('~/consts/models')
 
 const subjectSchema = new Schema(
   {
     name: {
       type: String,
+      required: [true, errors.FIELD_CANNOT_BE_EMPTY('name')],
+      trim: true,
       unique: true
     },
     category: {
       type: Schema.Types.ObjectId,
+      required: [true, errors.FIELD_CANNOT_BE_EMPTY('category')],
       ref: CATEGORY
     },
     totalOffers: {

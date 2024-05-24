@@ -10,7 +10,7 @@ const categorySchema = new Schema(
       unique: true
     },
     appearance: {
-      icon: {
+      icon_path: {
         type: String,
         required: [true, FIELD_IS_NOT_DEFINED('appearance.icon')],
         default: 'mocked-path-to-icon'

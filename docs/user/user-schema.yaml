@@ -38,6 +38,8 @@ definitions:
               type: number
         nativeLanguage:
           type: string
+        spokenLanguages:
+          type: array
         address:
           type: object
           properties:
@@ -138,6 +140,8 @@ definitions:
             type: number
       nativeLanguage:
         type: string
+      spokenLanguages:
+        type: array
       address:
         type: object
         properties:
@@ -152,6 +156,8 @@ definitions:
       isEmailConfirmed:
         type: boolean
       isFirstLogin:
+        type: boolean
+      isRegistrationCompleted:
         type: boolean
       lastLogin:
         type: string

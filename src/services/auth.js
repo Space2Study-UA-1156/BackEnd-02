@@ -6,7 +6,6 @@ const { hashPassword, comparePasswords } = require('~/utils/passwordHelper')
 const { createError } = require('~/utils/errorsHelper')
 const {
   EMAIL_ALREADY_CONFIRMED,
-  EMAIL_NOT_CONFIRMED,
   BAD_CONFIRM_TOKEN,
   INCORRECT_CREDENTIALS,
   BAD_RESET_TOKEN,
@@ -27,7 +26,6 @@ const authService = {
 
     const confirmToken = tokenService.generateConfirmToken({ id: user._id, role })
     await tokenService.saveToken(user._id, confirmToken, CONFIRM_TOKEN)
-    await emailService.sendEmail(email, emailSubject.EMAIL_CONFIRMATION, language, { confirmToken, email, firstName })
     return {
       userId: user._id,
       userEmail: user.email
@@ -75,13 +73,9 @@ const authService = {
       throw createError(401, INCORRECT_CREDENTIALS)
     }
 
-    const { _id, lastLoginAs, isFirstLogin, isEmailConfirmed } = user
+    const { _id, lastLoginAs, isFirstLogin, isRegistrationCompleted, isEmailConfirmed, firstName, lastName } = user
 
-    if (!isEmailConfirmed) {
-      throw createError(401, EMAIL_NOT_CONFIRMED)
-    }
-
-    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin })
+    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin, isRegistrationCompleted, firstName, lastName, email })
     await tokenService.saveToken(_id, tokens.refreshToken, REFRESH_TOKEN)
 
     if (isFirstLogin) {
@@ -122,9 +116,11 @@ const authService = {
       throw createError(400, BAD_REFRESH_TOKEN)
     }
 
-    const { _id, lastLoginAs, isFirstLogin } = await getUserById(tokenData.id)
+    const user = await getUserById(tokenData.id)
 
-    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin })
+    const { _id, lastLoginAs, isFirstLogin, isRegistrationCompleted, firstName, lastName, email } = user
+
+    const tokens = tokenService.generateTokens({ id: _id, role: lastLoginAs, isFirstLogin, isRegistrationCompleted, firstName, lastName, email })
     await tokenService.saveToken(_id, tokens.refreshToken, REFRESH_TOKEN)
 
     return tokens
