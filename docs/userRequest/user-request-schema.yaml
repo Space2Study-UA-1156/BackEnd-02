@@ -1,0 +1,76 @@
+definitions:
+  user-requests:
+    type: object
+    required:
+      - new_subject
+      - category
+      - additionalInfo
+      - author
+    items:
+      type: object
+      properties:
+        _id:
+          type: string
+        new_subject:
+          type: string
+        category:
+          type: object
+          properties:
+            name:
+              type: string
+            id:
+              type: string
+              nullable: true
+        additionalInfo:
+          type: string
+        author:
+          type: object
+          ref: '#/components/user'
+        isModerated:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  userRequestResponse:
+    type: object
+    properties:
+      _id:
+        type: string
+      new_subject:
+        type: string
+      category:
+        type: object
+      additionalInfo:
+        type: string
+      author:
+        type: object
+        ref: '#/components/user'
+      isModerated:
+        type: boolean
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+  userRequest:
+    type: object
+    properties:
+      new_subject:
+        type: string
+      category:
+        type: object
+      additionalInfo:
+        type: string
+  update-userRequest:
+    type: object
+    properties:
+      new_subject:
+        type: string
+      category:
+        type: object
+      additionalInfo:
+        type: string

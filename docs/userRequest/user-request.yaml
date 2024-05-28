@@ -1,0 +1,324 @@
+paths:
+  /user-requests:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Requests
+      summary: Find all user requests
+      description: Finds and returns an array with a list of user requests.
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/userRequestResponse'
+              example:
+                count: 2
+                userRequests:
+                  - _id: 6255bc080a75adf9223df100
+                    new_subject: 'Exploring Nature'
+                    category:
+                      name: 'Science'
+                      id: null
+                    additionalInfo: 'This is an exciting journey to understand the wonders of the natural world.'
+                    author:
+                      _id: 6255bc080a75adf9223df100
+                      firstName: John
+                      lastName: Doe
+                      email: john.doe@gmail.com
+                    createdAt: 2024-05-28T16:49:56.709Z
+                    updatedAt: 2024-05-28T16:49:56.709Z
+                  - _id: 8755bc080a00adr9243df104
+                    new_subject: 'Healthy Cooking'
+                    category:
+                      name: 'Food & Nutrition'
+                      id: null
+                    additionalInfo: 'Learn how to prepare delicious and nutritious meals that promote good health.'
+                    author:
+                      _id: 6255bc080a75adf9223df100
+                      firstName: John
+                      lastName: Doe
+                      email: john.doe@gmail.com
+                    createdAt: 2024-05-28T16:49:56.709Z
+                    updatedAt: 2024-05-28T16:49:56.709Z
+
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 401
+                code: 'UNAUTHORIZED'
+                message: 'The requested URL requires user authorization.'
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Requests
+      summary: Create new user request
+      description: Saves a new user request the DB.
+      produces:
+        - application/json
+      requestBody:
+        required: true
+        description: Create new user request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/userRequest'
+            example:
+              new_subject: 'Healthy Cooking'
+              category: 'Food & Nutrition'
+              additionalInfo: 'Learn how to prepare delicious and nutritious meals that promote good health.'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/userRequestResponse'
+              example:
+                _id: 8755bc080a00adr9243df104
+                new_subject: 'Healthy Cooking'
+                category: { name: 'Science', id: null }
+                additionalInfo: 'This is an exciting journey to understand the wonders of the natural world.'
+                author:
+                  _id: 6255bc080a75adf9223df100
+                  firstName: John
+                  lastName: Doe
+                  email: john.doe@gmail.com
+                createdAt: 2024-05-28T16:49:56.709Z
+                updatedAt: 2024-05-28T16:49:56.709Z
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 401
+                code: UNAUTHORIZED
+                message: The requested URL requires user authorization.
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 403
+                code: FORBIDDEN
+                message: You do not have permission to perform this action.
+  /user-requests/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Requests
+      summary: Find user request by ID
+      description: Finds and returns a user request with the specified ID.
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user request that needs to be fetched
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/userRequestResponse'
+              example:
+                _id: 8755bc080a00adr9243df104
+                new_subject: 'Healthy Cooking'
+                category: { name: 'Science', id: null }
+                additionalInfo: 'This is an exciting journey to understand the wonders of the natural world.'
+                author:
+                  _id: 6255bc080a75adf9223df100
+                  firstName: John
+                  lastName: Doe
+                  email: john.doe@gmail.com
+                createdAt: 2024-05-28T16:49:56.709Z
+                updatedAt: 2024-05-28T16:49:56.709Z
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 400
+                code: INVALID_ID
+                message: ID is invalid.
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 401
+                code: UNAUTHORIZED
+                message: The requested URL requires user authorization.
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 404
+                code: DOCUMENT_NOT_FOUND
+                message: User request with the specified id was not found.
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Requests
+      summary: Update user request by ID
+      description: Finds and updates a user request with the specified ID.
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User request ID
+          type: string
+      requestBody:
+        required: true
+        description: Provide required data to update a user request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/update-userRequest'
+            example:
+              new_subject: 'Digital Marketing Strategies'
+              category: 'Marketing'
+              additionalInfo: 'Explore effective digital marketing strategies to grow your online presence and reach your target audience.'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 400
+                code: INVALID_ID
+                message: ID is invalid.
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 401
+                code: UNAUTHORIZED
+                message: The requested URL requires user authorization.
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 403
+                code: FORBIDDEN
+                message: You do not have permission to perform this action.
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 404
+                code: DOCUMENT_NOT_FOUND
+                message: User request with the specified id was not found.
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Requests
+      summary: Find and delete user request by ID
+      description: Finds and deletes a user request with the specified ID.
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user request that needs to be deleted
+          type: string
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 400
+                code: INVALID_ID
+                message: ID is invalid.
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 401
+                code: UNAUTHORIZED
+                message: The requested URL requires user authorization.
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 403
+                code: FORBIDDEN
+                message: You do not have permission to perform this action.
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/Error'
+              example:
+                status: 404
+                code: DOCUMENT_NOT_FOUND
+                message: User request with the specified id was not found.
