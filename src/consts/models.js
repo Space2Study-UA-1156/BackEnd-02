@@ -7,7 +7,8 @@ const refs = {
   REVIEW: 'Review',
   ADMIN_INVITATION: 'AdminInvitation',
   COOPERATION: 'Cooperation',
-  COMMENT: 'Comment'
+  COMMENT: 'Comment',
+  USER_REQUEST: 'UserRequest'
 }
 
 module.exports = refs
